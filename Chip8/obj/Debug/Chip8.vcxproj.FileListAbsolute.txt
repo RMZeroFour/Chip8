@@ -21,3 +21,4 @@ D:\Projects\C++\Chip8\Chip8\bin\Debug\res\UFO
 D:\Projects\C++\Chip8\Chip8\bin\Debug\res\VBRIX
 D:\Projects\C++\Chip8\Chip8\bin\Debug\res\VERS
 D:\Projects\C++\Chip8\Chip8\bin\Debug\res\WIPEOFF
+D:\Projects\C++\Chip8\Chip8\bin\Debug\res\TESTROM

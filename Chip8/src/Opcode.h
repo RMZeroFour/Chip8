@@ -105,12 +105,14 @@ namespace Opcodes
 
 	const Opcode Op8xy4("ADD Vx, Vy (8xy4): Set Vx to Vx + Vy", [](word code, Chip8& cpu)
 		{
+			cpu.Registers[0xF] = ((int)(cpu.Registers[(code & 0x0F00) >> 8]) + cpu.Registers[(code & 0x00F0) >> 4] > 0xFF) ? 1 : 0;
 			cpu.Registers[(code & 0x0F00) >> 8] += cpu.Registers[(code & 0x00F0) >> 4];
 			cpu.ProgramCounter += 2;
 		});
 
 	const Opcode Op8xy5("SUB Vx, Vy (8xy5): Set Vx to Vx - Vy", [](word code, Chip8& cpu)
 		{
+			cpu.Registers[0xF] = ((int)(cpu.Registers[(code & 0x0F00) >> 8]) - cpu.Registers[(code & 0x00F0) >> 4] < 0) ? 0 : 1;
 			cpu.Registers[(code & 0x0F00) >> 8] -= cpu.Registers[(code & 0x00F0) >> 4];
 			cpu.ProgramCounter += 2;
 		});
