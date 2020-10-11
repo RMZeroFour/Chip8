@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project>
-  <ProjectOutputs>D:\Projects\C++\Chip8\Chip8\bin\Release\Chip8.exe</ProjectOutputs>
-  <ContentFiles>D:\Projects\C++\Chip8\Chip8\res\15PUZZLE;D:\Projects\C++\Chip8\Chip8\res\BLINKY;D:\Projects\C++\Chip8\Chip8\res\BLITZ;D:\Projects\C++\Chip8\Chip8\res\BRIX;D:\Projects\C++\Chip8\Chip8\res\CONNECT4;D:\Projects\C++\Chip8\Chip8\res\GUESS;D:\Projects\C++\Chip8\Chip8\res\HIDDEN;D:\Projects\C++\Chip8\Chip8\res\INVADERS;D:\Projects\C++\Chip8\Chip8\res\KALEID;D:\Projects\C++\Chip8\Chip8\res\MAZE;D:\Projects\C++\Chip8\Chip8\res\MERLIN;D:\Projects\C++\Chip8\Chip8\res\MISSILE;D:\Projects\C++\Chip8\Chip8\res\PONG;D:\Projects\C++\Chip8\Chip8\res\PONG2;D:\Projects\C++\Chip8\Chip8\res\PUZZLE;D:\Projects\C++\Chip8\Chip8\res\SYZYGY;D:\Projects\C++\Chip8\Chip8\res\TANK;D:\Projects\C++\Chip8\Chip8\res\TETRIS;D:\Projects\C++\Chip8\Chip8\res\TICTAC;D:\Projects\C++\Chip8\Chip8\res\UFO;D:\Projects\C++\Chip8\Chip8\res\VBRIX;D:\Projects\C++\Chip8\Chip8\res\VERS;D:\Projects\C++\Chip8\Chip8\res\WIPEOFF</ContentFiles>
-  <SatelliteDlls></SatelliteDlls>
-  <NonRecipeFileRefs></NonRecipeFileRefs>
-</Project>
