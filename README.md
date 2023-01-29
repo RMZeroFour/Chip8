@@ -38,9 +38,9 @@ If you manage to get it working (it's been too long, I can't figure out how to s
 
 ### Built With
 
-* (SFML)[https://www.sfml-dev.org/index.php]
-* (Dear ImGui)[https://github.com/ocornut/imgui]
-* (ImGui-SFML)[https://github.com/eliasdaler/imgui-sfml]
+* [SFML](https://www.sfml-dev.org/index.php)
+* [Dear ImGui](https://github.com/ocornut/imgui)
+* [ImGui-SFML](https://github.com/eliasdaler/imgui-sfml)
 
 <!-- LICENSE -->
 ## License
