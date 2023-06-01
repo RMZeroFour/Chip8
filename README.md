@@ -4,8 +4,10 @@
 <br>
 <div align="center">
   <a href="https://github.com/DevChrome/Chip8">
-	<h1 align="center">Chip8</h1>
+    <img alt="Screenshot 1" src="./screenshots/image0.png">
   </a>
+
+  <h1 align="center">Chip8</h1>
 
   <p align="center">
     A chip-8 emulator and interpreter, built using SFML and Dear ImGui in C++
@@ -24,6 +26,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+    <li><a href="#screenshots">Screenshots</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -41,6 +44,12 @@ If you manage to get it working (it's been too long, I can't figure out how to s
 * [SFML](https://www.sfml-dev.org/index.php)
 * [Dear ImGui](https://github.com/ocornut/imgui)
 * [ImGui-SFML](https://github.com/eliasdaler/imgui-sfml)
+
+<!-- USAGE EXAMPLES -->
+## Screenshots
+![Screenshot 2](./screenshots/image1.png)
+![Screenshot 3](./screenshots/image2.png)
+![Screenshot 4](./screenshots/image3.png)
 
 <!-- LICENSE -->
 ## License
