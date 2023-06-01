@@ -1,6 +1,6 @@
 #include <functional>
-#include <imgui.h>
 #include <filesystem>
+#include <imgui.h>
 
 #pragma once
 
@@ -10,7 +10,7 @@ namespace ImGui
 	static char selectedFileBuffer[256];
 	static int selectedIndex = -1;
 
-	static void strcpy(std::string& src, char* dst)
+	static void strcpy(std::string &src, char *dst)
 	{
 		int len = src.length();
 		src.copy(dst, len);
@@ -25,7 +25,7 @@ namespace ImGui
 		ImGui::OpenPopup("LoadRom");
 	}
 
-	void FileBrowser(std::function<void(const char*)> callback)
+	void FileBrowser(std::function<void(const char *)> callback)
 	{
 		ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
 		ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
@@ -39,7 +39,7 @@ namespace ImGui
 				if (ImGui::ListBoxHeader("##entry_list"))
 				{
 					int index = 0;
-					for (const auto& entry : std::filesystem::directory_iterator(dirBuffer))
+					for (const auto &entry : std::filesystem::directory_iterator(dirBuffer))
 					{
 						ImGui::Text(std::filesystem::is_directory(entry) ? "[D]" : "[F]");
 						ImGui::SameLine(30);
@@ -77,7 +77,7 @@ namespace ImGui
 			}
 
 			ImGui::SameLine();
-			
+
 			if (ImGui::Button("Select") && selectedIndex != -1)
 			{
 				callback(selectedFileBuffer);

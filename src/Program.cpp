@@ -29,7 +29,7 @@ private:
 	sf::Sound beep;
 	sf::SoundBuffer beepBuffer;
 
-	const char* currentRomPath;
+	const char* currentRomPath = nullptr;
 	int currentRomLength;
 
 	std::unordered_set<int> breakpoints;
@@ -221,19 +221,19 @@ private:
 				{
 					breakpoints.clear();
 				}
-			
+
 				ImGui::EndMenu();
 			}
 
 			if (ImGui::BeginMenu("Prefs"))
 			{
-				float setBuffer[3] = { setColor.r / 255.0f, setColor.g / 255.0f, setColor.b / 255.0f };
+				float setBuffer[3] = {setColor.r / 255.0f, setColor.g / 255.0f, setColor.b / 255.0f};
 				if (ImGui::ColorEdit3("Set Pixels", setBuffer))
 				{
 					setColor = sf::Color(setBuffer[0] * 255, setBuffer[1] * 255, setBuffer[2] * 255);
 				}
 
-				float unsetBuffer[3] = { unsetColor.r / 255.0f, unsetColor.g / 255.0f, unsetColor.b / 255.0f };
+				float unsetBuffer[3] = {unsetColor.r / 255.0f, unsetColor.g / 255.0f, unsetColor.b / 255.0f};
 				if (ImGui::ColorEdit3("Unset Pixels", unsetBuffer))
 				{
 					unsetColor = sf::Color(unsetBuffer[0] * 255, unsetBuffer[1] * 255, unsetBuffer[2] * 255);
@@ -271,7 +271,7 @@ private:
 
 	void RenderDisplay()
 	{
-		sf::RectangleShape pixel({ 10.0f, 10.0f });
+		sf::RectangleShape pixel({10.0f, 10.0f});
 
 		for (int y = 0; y < 32; y++)
 		{
@@ -279,7 +279,7 @@ private:
 			{
 				bool isSet = cpu.Graphics[y * 64 + x];
 
-				pixel.setPosition({ x * 10.0f,  y * 10.0f + 20.0f });
+				pixel.setPosition({x * 10.0f, y * 10.0f + 20.0f});
 				pixel.setFillColor(isSet ? setColor : unsetColor);
 
 				window.draw(pixel);
@@ -289,11 +289,11 @@ private:
 
 	void RenderCpuState()
 	{
-		ImGui::SetNextWindowPos({ 0, 340 });
-		ImGui::SetNextWindowSize({ 320, 300 });
+		ImGui::SetNextWindowPos({0, 340});
+		ImGui::SetNextWindowSize({320, 300});
 		ImGui::Begin("CPU State", 0, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
-		const char* targets[] = { "Memory", "Registers", "Stack", "Graphics", "Keyboard" };
+		const char* targets[] = {"Memory", "Registers", "Stack", "Graphics", "Keyboard"};
 		static int selectedTarget = 0;
 
 		ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
@@ -301,11 +301,21 @@ private:
 
 		switch (selectedTarget)
 		{
-		case 0: RenderMemory(); break;
-		case 1: RenderRegisters(); break;
-		case 2: RenderStack(); break;
-		case 3: RenderGraphics(); break;
-		case 4: RenderKeyboard(); break;
+		case 0:
+			RenderMemory();
+			break;
+		case 1:
+			RenderRegisters();
+			break;
+		case 2:
+			RenderStack();
+			break;
+		case 3:
+			RenderGraphics();
+			break;
+		case 4:
+			RenderKeyboard();
+			break;
 		}
 
 		ImGui::End();
@@ -313,7 +323,7 @@ private:
 
 	void RenderMemory()
 	{
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		static int memoryStart = 0;
 		ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
@@ -323,7 +333,7 @@ private:
 		{
 			for (int offset = 0; offset < 32; offset++)
 			{
-				ImGui::TableNextCell();
+				ImGui::TableNextColumn();
 
 				ImGui::AlignTextToFramePadding();
 				ImGui::Text("%04X:", memoryStart + offset);
@@ -344,7 +354,7 @@ private:
 		{
 			for (int reg = 0; reg < 16; reg++)
 			{
-				ImGui::TableNextCell();
+				ImGui::TableNextColumn();
 
 				ImGui::AlignTextToFramePadding();
 				ImGui::Text("V%02X:", reg);
@@ -358,14 +368,14 @@ private:
 			ImGui::EndTable();
 		}
 
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 		ImGui::AlignTextToFramePadding();
 		ImGui::Text("Index:");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
 		ImGui::InputScalar("##index_reg", ImGuiDataType_U16, &cpu.IndexRegister, 0, 0, "%X", ImGuiInputTextFlags_CharsHexadecimal);
 
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		ImGui::AlignTextToFramePadding();
 		ImGui::Text("Delay Timer:");
@@ -395,7 +405,7 @@ private:
 				ImGui::Text("%02d:", i);
 		};
 
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		ImGui::BeginTable("stack", 2, ImGuiTableFlags_Borders);
 		for (int i = 7; i >= 0; i--)
@@ -406,7 +416,7 @@ private:
 		}
 		ImGui::EndTable();
 
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		int min = 0, max = 16 - 1;
 		ImGui::SliderScalar("Stack Pointer", ImGuiDataType_U8, &cpu.StackPointer, &min, &max, "%d");
@@ -414,7 +424,7 @@ private:
 
 	void RenderGraphics()
 	{
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		static int x = 0;
 		ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
@@ -424,7 +434,7 @@ private:
 		{
 			for (int y = 0; y < 32; y++)
 			{
-				ImGui::TableNextCell();
+				ImGui::TableNextColumn();
 
 				ImGui::AlignTextToFramePadding();
 				ImGui::Text("(%02d,%02d):", x, y);
@@ -441,7 +451,7 @@ private:
 
 	void RenderKeyboard()
 	{
-		ImGui::Dummy({ 0, 10 });
+		ImGui::Dummy({0, 10});
 
 		const char* original = "123C456D789EA0BF";
 		const char* mapped = "1234QWERASDFZXCV";
@@ -450,14 +460,14 @@ private:
 		{
 			for (int i = 0; i < 16; i++)
 			{
-				ImGui::TableNextCell();
+				ImGui::TableNextColumn();
 
 				if (cpu.Keyboard[i])
 					ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, sf::Color::Red.toInteger());
 
-				ImGui::Dummy({ 0, 10 });
+				ImGui::Dummy({0, 10});
 				ImGui::Text("  %c [%c] ", original[i], mapped[i]);
-				ImGui::Dummy({ 0, 10 });
+				ImGui::Dummy({0, 10});
 			}
 
 			ImGui::EndTable();
@@ -466,8 +476,8 @@ private:
 
 	void RenderProgram()
 	{
-		ImGui::SetNextWindowPos({ 320, 340 });
-		ImGui::SetNextWindowSize({ 320, 300 });
+		ImGui::SetNextWindowPos({320, 340});
+		ImGui::SetNextWindowSize({320, 300});
 		ImGui::Begin("Program", 0, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
 		static int scrollValue = 512;
@@ -480,7 +490,7 @@ private:
 		if (lock)
 			scrollValue = cpu.ProgramCounter;
 
-		ImGui::BeginTable("##program_table", 4, ImGuiTableFlags_Borders);
+		ImGui::BeginTable("##program_table", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp);
 		ImGui::TableSetupColumn("##col_opcode", 0, 0.1f);
 		ImGui::TableSetupColumn("##col_opcode", 0, 0.15f);
 		ImGui::TableSetupColumn("##col_addr", 0, 0.15f);
@@ -607,7 +617,7 @@ private:
 	void DumpCpuData()
 	{
 		std::string tempName = std::filesystem::path(currentRomPath).replace_extension(".c8ss").u8string();
-		
+
 		std::ofstream file(tempName, std::ios::out | std::ios::binary);
 		file.write((char*)&cpu, sizeof(cpu));
 		file.close();
@@ -638,7 +648,7 @@ private:
 		state.IsRomLoaded = true;
 
 		delete[] code;
-	
+
 		file.close();
 	}
 
@@ -650,7 +660,7 @@ private:
 
 		const int SAMPLE_COUNT = SAMPLE_RATE / FREQUENCY;
 		short wavetable[SAMPLE_COUNT];
-		
+
 		float stepSize = (6.284f) / SAMPLE_COUNT;
 		for (int i = 0; i < SAMPLE_COUNT; i++)
 		{
