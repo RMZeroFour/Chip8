@@ -1,7 +1,12 @@
 find_package(OpenGL REQUIRED)
 
-set(SFML_DIR ${CMAKE_CURRENT_LIST_DIR}/SFML/lib/cmake/SFML)
-find_package(SFML COMPONENTS system window graphics audio main GLOBAL)
+include(FetchContent)
+FetchContent_Declare(SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 2.5.1
+    GIT_SHALLOW TRUE 
+)
+FetchContent_MakeAvailable(SFML)
 
 add_library(imgui STATIC)
 target_sources(imgui PRIVATE
